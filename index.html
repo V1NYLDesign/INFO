@@ -6,10 +6,20 @@
     <title>Shaatvik | Designer, Producer, Photographer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* General Setup */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: #000; color: #fff; overflow: hidden; height: 100vh; width: 100vw; }
 
-        /* The Functional Click to Enter Screen */
+        /* Fullscreen Video Fix - Always Centered */
+        #background-video { 
+            position: fixed; top: 50%; left: 50%; 
+            min-width: 100%; min-height: 100%; 
+            width: auto; height: auto; 
+            z-index: 1; transform: translate(-50%, -50%);
+            object-fit: cover; pointer-events: none; opacity: 0.6;
+        }
+
+        /* Click to Enter Screen - Functional Wall */
         #entry-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; display: flex; align-items: center; justify-content: center;
@@ -21,19 +31,9 @@
             letter-spacing: 5px; font-size: 11px; color: #fff; font-weight: 300;
             border: 1px solid rgba(255,255,255,0.2); padding: 15px 30px;
             transition: 0.3s;
-            /* Added glow to entry text */
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            text-shadow: 0 0 10px rgba(255,255,255,0.8); /* Glow effect */
         }
         #entry-text:hover { background: #fff; color: #000; text-shadow: none; }
-
-        /* Video Background - Fixed Positioning */
-        #background-video { 
-            position: fixed; top: 50%; left: 50%; 
-            min-width: 100%; min-height: 100%; 
-            width: auto; height: auto; 
-            z-index: 1; transform: translate(-50%, -50%);
-            object-fit: cover; pointer-events: none; opacity: 0.6;
-        }
 
         /* Profile Card */
         #profile-block { 
@@ -46,29 +46,27 @@
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; }
         .waveform-container { width: 100%; height: 60px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
         
-        /* Added Glow to Name */
+        /* The Glow Name */
         #profile-name { 
             font-size: 32px; font-weight: 700; color: #fff; 
             letter-spacing: -0.5px; 
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Stronger Glow */
         }
 
         #profile-bio { color: #ccc; font-size: 13px; margin: 5px 0; font-weight: 300; line-height: 1.6; }
 
+        /* Skills with Glow Bars */
         .skills-container { margin: 20px 0; }
         .skill { margin-bottom: 12px; }
         .skill-name { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 5px; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
         .skill-bar-bg { height: 3px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
-        
-        /* Added Glow to Skill Bars */
         .skill-bar-fill { 
             height: 100%; border-radius: 2px; background: #fff; 
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Bar Glow */
         }
 
         #music-widget { background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
         .status-dot { color: #fff; font-size: 10px; animation: blink 2s infinite; text-shadow: 0 0 5px #fff; }
-        
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 25px; }
@@ -143,7 +141,7 @@
             screen.classList.add('fade-out');
 
             audio.volume = 0.4;
-            audio.play().catch(e => console.log("Audio failed"));
+            audio.play().catch(e => console.log("Audio load failed - check assets folder"));
             video.play();
         }
     </script>
