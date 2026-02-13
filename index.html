@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V1NYL | Designer, Producer, Photographer</title>
+    <title>Shaatvik | Designer, Producer, Photographer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -21,13 +21,18 @@
             letter-spacing: 5px; font-size: 11px; color: #fff; font-weight: 300;
             border: 1px solid rgba(255,255,255,0.2); padding: 15px 30px;
             transition: 0.3s;
+            /* Added glow to entry text */
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
-        #entry-text:hover { background: #fff; color: #000; }
+        #entry-text:hover { background: #fff; color: #000; text-shadow: none; }
 
-        /* Video Background */
+        /* Video Background - Fixed Positioning */
         #background-video { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; z-index: 1; pointer-events: none; opacity: 0.5;
+            position: fixed; top: 50%; left: 50%; 
+            min-width: 100%; min-height: 100%; 
+            width: auto; height: auto; 
+            z-index: 1; transform: translate(-50%, -50%);
+            object-fit: cover; pointer-events: none; opacity: 0.6;
         }
 
         /* Profile Card */
@@ -40,17 +45,30 @@
 
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; }
         .waveform-container { width: 100%; height: 60px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
-        #profile-name { font-size: 32px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
-        #profile-bio { color: #888; font-size: 13px; margin: 5px 0; font-weight: 300; line-height: 1.6; }
+        
+        /* Added Glow to Name */
+        #profile-name { 
+            font-size: 32px; font-weight: 700; color: #fff; 
+            letter-spacing: -0.5px; 
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
+        }
+
+        #profile-bio { color: #ccc; font-size: 13px; margin: 5px 0; font-weight: 300; line-height: 1.6; }
 
         .skills-container { margin: 20px 0; }
         .skill { margin-bottom: 12px; }
         .skill-name { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 5px; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
         .skill-bar-bg { height: 3px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
-        .skill-bar-fill { height: 100%; border-radius: 2px; background: #fff; }
+        
+        /* Added Glow to Skill Bars */
+        .skill-bar-fill { 
+            height: 100%; border-radius: 2px; background: #fff; 
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); 
+        }
 
         #music-widget { background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
-        .status-dot { color: #fff; font-size: 10px; animation: blink 2s infinite; }
+        .status-dot { color: #fff; font-size: 10px; animation: blink 2s infinite; text-shadow: 0 0 5px #fff; }
+        
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 25px; }
@@ -65,7 +83,7 @@
         <div id="entry-text">CLICK TO ENTER</div>
     </div>
 
-    <video id="v1nyl-bg" loop muted playsinline>
+    <video id="bg-video" loop muted playsinline>
         <source src="assets/bg.mp4" type="video/mp4">
     </video>
 
@@ -74,7 +92,7 @@
             <div class="waveform-container">
                 <img src="https://i.gifer.com/origin/63/6345e1512e376805466188f277d9053c_w200.gif" style="width:100%; height:100%; object-fit:cover; opacity: 0.4;" alt="Waveform">
             </div>
-            <div id="profile-name">V1NYL</div>
+            <div id="profile-name">Shaatvik</div>
             <div id="profile-bio">
                 Rookie Designer & Veteran Music Producer. <br>
                 Professional Photographer. <br>
@@ -112,20 +130,20 @@
         </div>
     </div>
 
-    <audio id="v1nyl-audio" loop>
+    <audio id="bg-audio" loop>
         <source src="assets/blakk-rockstar.mp3" type="audio/mp3">
     </audio>
 
     <script>
         function launchExperience() {
             const screen = document.getElementById('entry-screen');
-            const audio = document.getElementById('v1nyl-audio');
-            const video = document.getElementById('v1nyl-bg');
+            const audio = document.getElementById('bg-audio');
+            const video = document.getElementById('bg-video');
 
             screen.classList.add('fade-out');
 
             audio.volume = 0.4;
-            audio.play().catch(e => console.log("Audio play failed"));
+            audio.play().catch(e => console.log("Audio failed"));
             video.play();
         }
     </script>
