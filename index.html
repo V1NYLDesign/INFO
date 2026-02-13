@@ -3,98 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaatvik | Designer, Producer, Photographer</title>
+    <title>Shaatvik | Producer & Designer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: #000; color: #fff; overflow: hidden; height: 100vh; width: 100vw; }
 
-        /* Centered Fullscreen Video Background */
-       #bg-video { 
-    position: fixed; 
-    top: 50%; 
-    left: 50%; 
-    min-width: 100%; 
-    min-height: 100%; 
-    width: auto; 
-    height: auto; 
-    z-index: 1; /* Ensures it stays behind the profile card */
-    transform: translate(-50%, -50%); 
-    object-fit: cover; 
-    pointer-events: none; 
-    opacity: 0.6; /* Adjust this for more/less brightness */
-}
+        /* Video Background - Using your working version's base with a centering fix */
+        #background { 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            min-width: 100%; 
+            min-height: 100%; 
+            width: auto; 
+            height: auto; 
+            z-index: 1; 
+            transform: translate(-50%, -50%);
+            object-fit: cover; 
+            pointer-events: none; 
+            opacity: 0.6;
+        }
 
-        /* The Functional Click to Enter Screen */
-        #entry-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; display: flex; align-items: center; justify-content: center;
-            z-index: 9999; cursor: pointer; transition: opacity 0.8s ease, visibility 0.8s;
+        /* Start Screen - Minimalist */
+        #start-screen { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; display: flex; align-items: center; justify-content: center; 
+            z-index: 100; cursor: pointer; transition: opacity 0.6s ease;
             user-select: none; -webkit-user-select: none;
         }
-
-        #entry-text {
-            letter-spacing: 5px; font-size: 11px; color: #fff; font-weight: 300;
-            border: 1px solid rgba(255,255,255,0.2); padding: 15px 30px;
-            transition: 0.3s;
-            text-shadow: 0 0 15px rgba(255,255,255,0.8); /* Glow effect */
+        
+        #start-screen p {
+            letter-spacing: 6px; color: #fff; font-size: 11px; font-weight: 300;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
-        #entry-text:hover { background: #fff; color: #000; text-shadow: none; }
 
-        /* Profile Card */
+        /* Profile Card - Black Shadows & White Text */
         #profile-block { 
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            width: 90%; max-width: 400px; background: rgba(10, 10, 10, 0.85); 
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 35px; border-radius: 20px; 
-            z-index: 20; backdrop-filter: blur(15px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            width: 90%; max-width: 400px; 
+            background: rgba(10, 10, 10, 0.85); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 35px; border-radius: 20px; z-index: 20; 
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
         }
 
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; }
-        .waveform-container { width: 100%; height: 60px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .waveform-container { width: 100%; height: 65px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.15); }
         
-        /* The Glow Name */
+        /* Glow Name */
         #profile-name { 
             font-size: 32px; font-weight: 700; color: #fff; 
-            letter-spacing: -0.5px; 
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.8); /* Stronger Glow */
+            letter-spacing: -0.5px; margin-top: 5px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
         }
 
-        #profile-bio { color: #ccc; font-size: 13px; margin: 5px 0; font-weight: 300; line-height: 1.6; }
+        #profile-bio { color: #aaa; font-size: 13px; margin: 10px 0; line-height: 1.6; font-weight: 300; }
 
-        /* Skills with Glow Bars */
-        .skills-container { margin: 20px 0; }
-        .skill { margin-bottom: 12px; }
-        .skill-name { display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 5px; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
-        .skill-bar-bg { height: 3px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+        /* Skills Bars - Glow effect added */
+        .skills-container { margin: 25px 0; }
+        .skill { margin-bottom: 15px; }
+        .skill-name { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .skill-bar-bg { height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
         .skill-bar-fill { 
             height: 100%; border-radius: 2px; background: #fff; 
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.7); /* Bar Glow */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
         }
 
-        #music-widget { background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.05); }
-        .status-dot { color: #fff; font-size: 10px; animation: blink 2s infinite; text-shadow: 0 0 5px #fff; }
+        /* Music Widget */
+        #music-widget { background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .status-dot { color: #fff; font-size: 12px; animation: blink 2s infinite; text-shadow: 0 0 5px #fff; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         .social-links { display: flex; justify-content: center; gap: 25px; margin-top: 25px; }
-        .social-icon { width: 26px; height: 26px; transition: 0.3s ease; }
+        .social-icon { width: 24px; height: 24px; transition: 0.3s ease; }
+        .social-icon:hover { transform: translateY(-3px); }
 
-        .fade-out { opacity: 0 !important; visibility: hidden !important; }
+        .hidden { opacity: 0 !important; pointer-events: none; }
     </style>
 </head>
 <body>
 
-    <div id="entry-screen" onclick="launchExperience()">
-        <div id="entry-text">CLICK TO ENTER</div>
+    <div id="start-screen">
+        <p>[ CLICK TO ENTER ]</p>
     </div>
 
-    <video id="bg-video" loop muted playsinline>
+    <video id="background" loop muted playsinline>
         <source src="assets/bg.mp4" type="video/mp4">
     </video>
 
     <div id="profile-block">
         <div class="profile-header">
             <div class="waveform-container">
-                <img src="https://i.gifer.com/origin/63/6345e1512e376805466188f277d9053c_w200.gif" style="width:100%; height:100%; object-fit:cover; opacity: 0.4;" alt="Waveform">
+                <img src="https://i.gifer.com/origin/63/6345e1512e376805466188f277d9053c_w200.gif" style="width:100%; height:100%; object-fit:cover; opacity:0.4;" alt="Waveform">
             </div>
             <div id="profile-name">Shaatvik</div>
             <div id="profile-bio">
@@ -121,9 +123,9 @@
 
         <div id="music-widget">
             <div class="status-dot">●</div>
-            <div style="font-size: 10px;">
-                <span style="opacity: 0.5;">NOW PLAYING</span><br>
-                <strong style="font-size: 11px;">Blakk Rockstar - Ken Carson</strong>
+            <div style="font-size: 10px; letter-spacing: 0.5px;">
+                <span style="opacity: 0.6;">NOW PLAYING</span><br>
+                <strong style="font-size: 12px;">Blakk Rockstar - Ken Carson</strong>
             </div>
         </div>
 
@@ -134,22 +136,22 @@
         </div>
     </div>
 
-    <audio id="bg-audio" loop>
+    <audio id="background-music" loop>
         <source src="assets/blakk-rockstar.mp3" type="audio/mp3">
     </audio>
 
     <script>
-        function launchExperience() {
-            const screen = document.getElementById('entry-screen');
-            const audio = document.getElementById('bg-audio');
-            const video = document.getElementById('bg-video');
+        const startScreen = document.getElementById('start-screen');
+        const bgMusic = document.getElementById('background-music');
+        const bgVideo = document.getElementById('background');
 
-            screen.classList.add('fade-out');
-
-            audio.volume = 0.4;
-            audio.play().catch(e => console.log("Audio load failed"));
-            video.play();
-        }
+        startScreen.addEventListener('click', () => {
+            bgMusic.volume = 0.4;
+            bgMusic.play().catch(e => console.log("Audio play blocked"));
+            bgVideo.play();
+            startScreen.classList.add('hidden');
+            setTimeout(() => { startScreen.style.display = 'none'; }, 600);
+        });
     </script>
 </body>
 </html>
