@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: #000; color: #fff; overflow: hidden; height: 100vh; width: 100vw; cursor: pointer; }
+        body { background-color: #000; color: #fff; overflow: hidden; height: 100vh; width: 100vw; }
 
-        /* Video Background */
+        /* Video Background - Starts playing immediately */
         #background { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             object-fit: cover; z-index: 1; pointer-events: none; 
@@ -59,7 +59,7 @@
         .social-icon:hover { transform: translateY(-3px); }
     </style>
 </head>
-<body onclick="startExperience()">
+<body onclick="playMusic()">
 
     <video id="background" loop muted playsinline autoplay>
         <source src="assets/bg.mp4" type="video/mp4">
@@ -116,16 +116,10 @@
     </audio>
 
     <script>
-        let isPlaying = false;
-        function startExperience() {
-            if (!isPlaying) {
-                const bgMusic = document.getElementById('background-music');
-                const bgVideo = document.getElementById('background');
-                bgMusic.volume = 0.4;
-                bgMusic.play();
-                bgVideo.muted = false; // Unmutes video if it has sound
-                isPlaying = true;
-            }
+        function playMusic() {
+            const music = document.getElementById('background-music');
+            music.volume = 0.4;
+            music.play();
         }
     </script>
 </body>
